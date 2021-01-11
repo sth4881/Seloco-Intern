@@ -1,4 +1,4 @@
-# 2020 Seloco Winter Intern
+# 2020 SELOCO, Inc. Winter Intern
 ### [(주)셀로코](http://www.seloco.com/company/com200-1.asp)
 - 2021.01.04 ~ 2021.02.26
 - 매일매일 DailyReport 작성
