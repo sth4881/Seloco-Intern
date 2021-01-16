@@ -58,8 +58,9 @@
     - RF Transceiver, RF 회로, 8051-compatible MCU와 몇몇 외부 소자들로 구성되어 있으며, IEEE802.15.4에 있는 PHY, MAC 규격과 ZigBee 규격을 따름
     - 250Kbps에서 1Mbps까지의 data rate를 지원하며, SG100F에서는 2개의 20핀 커넥터를 통해 ZigBee 모듈과 UART로 통신
     - LM2455-EM은 2개의 UART가 있어서 UART0는 외부 디바이스와의 Serial 통신을 수행하고, UART1은 ZigBee 프로그래밍 동작을 수행 가능
-  - Ethernet(W5100, MAC-JACK 등)
+  - Ethernet
     - 인터넷망을 통해 웹서버에 접속하거나 원활한 데이터 송수신을 위한 유선 Ethernet 기능을 지원
+    - Hardwired TCP/IP 칩인 WIZNET W5100과 MAC-JACK 등으로 구성
     - FPGA에 내장된 8bit MCU에서는 Ethernet 모듈을 일반 SRAM에 접근하듯이 제어할 수 있고, 이를 통해 Ethernet 모듈을 이용한 웹 기반 네트워크 카메라 기능을 제공
     - 카메라 기능 사용 시에 특별한 영상 전송 프로토콜을 가지지 않으며, 이미지 요청과 전송은 HTTP 프로토콜 사용
     - Ethernet 모듈 특징
@@ -139,5 +140,46 @@
     - 하나는 ZigBee 모듈과 Flash Memory를 프로그래밍할 때 사용하고 다른 하나는 FPGA와 ZigBee 모듈간의 Serial 통신을 위해서 사용
     - S/W 제어를 통해 SU8051이 데이터 버퍼소자(74HC574)를 통해 2개의 스위치 소자(74HC125)를 제어하여 하나의 UART 통신으로 외부 PC와 FPGA, ZigBee 간에 통신 가능
   - ZigBee(RP-MR500)
-    - 2.4GHz RF Transceiver, Baseband Modem, Hardware MAC, 8051 MCU, Flash Memory를 내장하였으며 칩 안테나가 부착된 IEEE802.15.4 기반의 ZigBee 모듈로써 RF출력은 최대 8dB
-    - SG100F에 적용된 LM2455-EM 모듈보다 크기를 대폭 줄인 SMT 형태로 개발되어 구성품의 소형화가 필요한 SN100S에 적용하기 적합하며 IO신호들도 L42455-EM과 바로 호환 가능
+    - 2.4GHz RF Transceiver, Baseband Modem, Hardware MAC, 8051 MCU, Flash Memory를 내장하였으며 칩 안테나가 부착된 IEEE802.15.4 기반의 ZigBee 모듈로써 RF출력은 최대 8dB 정도
+    - SG100F에 적용된 LM2455-EM 모듈보다 크기를 대폭 줄인 SMT 형태로 개발되어 구성품의 소형화가 필요한 SN100S에 적용하기 적합하며 I/O 신호들도 L42455-EM과 바로 호환 가능
+- 입출력부
+  - PUSH Switch
+    - 외부 입력 제어를 위한 1개의 PUSH 스위치를 지원
+    - UC5000C 칩 내부 8bit MCU의 인터럽트0 신호로 연결
+  - LED
+    - 다양한 종류의 데이터를 디스플레이하기 위해 제공
+    - LED를 켜기 위해서는 해당 포트핀이 'low' 되어야 함
+- 옵션 보드
+  - SO100W(Sensor Writer 모듈)
+    - CP2102, Bus Transceiver Chip, Buffer Chip 등으로 구성
+    - SN100S에 장착된 Flash Memory를 프로그래밍하는 Sensor Node 모듈
+    - SO100W의 특징
+      - SN100S 프로그래밍 가능
+      - PC 연결시 USB-to-UART Bridge 포트로 인식
+      - ISP 전용 AVR 탑재
+      - 동작 확인용 LED
+    - 다운로드 모듈을 탈부착할 수 있게 하여 개발완료 후 보드 크기 및 저전력 측면에서 유리하도록 설계
+  - SO100R(움직임 센서)
+    - 인체감지 및 움직임감지를 위해 동작센서, Fresnel Lens를 적용한 동작센서 모듈
+    - 동작 센서 D203B와 아날로그 입력신호를 증폭해주는 2단 증폭기 등으로 구성
+  - SO100D(거리 센서)
+    - 거리감지를 위해 IR 신호 기반의 거리센서가 장착된 옵션 모듈
+    - 거리 센서 GP2Y0A21와 전원 소음 방지회로 등으로 구성
+  - WIZ810MJ(TCP/IP 모듈)
+    - WIZNET W5100칩과 MAC-JACK 등으로 구성된 TCP/IP 통신용 네트워크 모듈
+    - TCP/IP Hardwired Chip과 PHY를 내장하는 W5100을 포함하고 있기 때문에 빠르게 인터넷을 사용할 수 있는 시스템을 개발하기를 원하는 사용자들에게 적합
+    - WIZ810MJ의 특징
+      - Support 10/100 Base TX
+      - Suppoert half/full duplex operation
+      - Supports auto-negotiation and auto crossover detection
+      - IEEE 802.3/802.3u complaints
+      - Operates 3.3V with 5V I/O signal tolerance
+      - Supports network status indicator LEDs
+      - Includes Hardware Internet protocols : TCP, IP Ver.4, UDP, ICMP, ARP, PPPoE, IGMP
+      - Includes Hardware Ethernet protocols : DLC, MAC
+      - Supports 4 independent connections simultaneously
+      - Supports MCU bus Interface and SPI Interface
+      - Supports Direct/Indirect mode bus access
+      - Supports Socket API for easy application programming
+      - Interfaces with Two 2.0mm pitch 2 * 14 header pin
+      - Temperature : 0 ~ 70°C (Operation), -40 ~ 85°C (Storage)
