@@ -4,7 +4,7 @@
 
 ## 📅 2021.01.04
 ### SENSOS/MyUSN에 대한 전반적인 내용 학습
-- [MyUSN](https://github.com/sth4881/Seloco_Intern/blob/main/MyUSN.md)
+- [MyUSN](https://github.com/sth4881/Seloco-Intern/blob/main/MyUSN.md)
 ## 📅 2021.01.05
 ### SENSOS/MyUSN에 대해서 조사한 내용 발표
 - 학습한 내용에 대한 피드백 수용 및 자료 수정
@@ -18,14 +18,10 @@
 ## 📅 2021.01.08
 ### 통신방식 조사 및 비교 PPT 수정
 - 30만 화소, 100만 화소의 VGA 영상을 전송할 때 걸리는 시간 비교
-## 📅 2021.01.09
-### 통신방식 조사 및 비교 PPT 수정
-- JPEG, H.264에 대한 추가적인 조사 및 비교
-## 📅 2021.01.10
-### AI에 대한 자료조사 PPT 작성
-- AI에 대한 자료조사
+- JPEG, H.264에 대한 추가적인 조사 및 인코딩 방식 비교
 ## 📅 2021.01.11
-### AI에 대한 자료조사 PPT 수정
+### AI에 대한 자료조사 PPT 작성
+- AI에 대한 전반적인 자료조사
 - IBM Watson과 Google API에 대해서 조사 및 비교
 ## 📅 2021.01.12
 ### Home Demo System 실습 참관
