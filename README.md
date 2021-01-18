@@ -3,8 +3,8 @@
 - 2021.01.04 ~ 2021.02.26
 
 ## 📅 2021.01.04
-### SENSOS/MyUSN에 대한 전반적인 내용 학습
-- [MyUSN](https://github.com/sth4881/Seloco-Intern/blob/main/MyUSN.md)
+### SENSOS/MyUSN에 대한 내용 학습
+- [MyUSN & SENSOS Application SW](https://github.com/sth4881/Seloco-Intern/blob/main/MyUSN%20%26%20SENSOS%20Application%20SW.md)
 ## 📅 2021.01.05
 ### SENSOS/MyUSN에 대해서 조사한 내용 발표
 - 학습한 내용에 대한 피드백 수용 및 자료 수정
@@ -35,3 +35,8 @@
 ## 📅 2021.01.15
 ### Home Demo System 설계 방향 회의
 - 동기 인턴들과 함께 Home Demo System을 어떻게 만들어나갈지 구상하고 필요한 부품들에 대한 주문서 작성
+## 📅 2021.01.18
+### SENSOS/MyUSN에 대한 내용 학습
+- MyUSN & SENSOS Application SW.md 최종 작성
+### 업무계획관리표 작성
+- 업무계획관리표를 엑셀로 만들어서 전반적인 계획 작성
