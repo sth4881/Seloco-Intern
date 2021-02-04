@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face Crop & Save</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h1>신원확인에 필요한 얼굴 사진 Crop 페이지</h1>
+    <h3>이름을 영어로 입력해주세요</h3>
+    <!-- <form action='/crop/' method='POST'>
+        <input type='text' name='name'>
+        <input type='submit' id='crop' value='시작'>
+    </form> -->
+    <input type="text" id="name" name="name">
+    <p>
+        <input type="submit" id="crop" name="crop" value="시작">
+        <input type="button" id="back" name="back" value="뒤로가기" onclick="window.location.href='/index/'">
+    </p>
+</body>
+
+<!-- jQuery-latest -->
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+<!-- Javascript -->
+<script>
+    var userName = $("#name").val()
+    $("#crop").on("click", function() {
+        $.ajax({
+            url : "{{ url_for('crop') }}",
+            type : "POST",
+            data : {
+                nameaaaaaaaaaa : userName
+            },
+            success:function(response) {
+                alert('작업 완료 !')
+            },
+            // error:function(jqXHR, exception) {
+            //     alert('통신 오류 !')
+            error:function(request,status,error){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+        })
+    })
+</script>
+</html>

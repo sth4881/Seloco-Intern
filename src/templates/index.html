@@ -6,8 +6,20 @@
 </head>
 <body>
     <h1>Hello Flask!</h1>
-    <a href="/test">데이터 보내기 테스트</a><br>
-    <a href="/monitor">출입기록 확인</a><br>
+    <p>
+        <input type='button' name='data' value='데이터 전송' onclick="window.location.href='/test/'">
+    </p>
+    <p>
+        <input type='button' name='crop' value='얼굴사진 저장' onclick="window.location.href='/crop/'">
+    </p>
+    <p>
+        <input type='button' name='monitor' value='출입기록 확인' onclick="window.location.href='/monitor/'">
+    </p>
+    <p>
+        <form action="/identify/" method='POST'>
+            <input type='submit' name='identify' value='신원확인'>
+        </form>
+    </p>
     <!--
     <a href="/test">웹사이트 test로 이동</a> 
     a href는 GET방식만 지원하기 때문에 접근하려는 사이트가 POST방식이면 Error

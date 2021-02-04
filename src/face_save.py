@@ -5,7 +5,7 @@ from os import makedirs
 from os.path import isdir
 
 # 사진을 200x200 사이즈로 crop 후에 회색 바탕으로 바꿔서 저장
-cropped_dirs = 'faces/cropped/'
+face_dirs = 'static/faces/'
 
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
@@ -37,7 +37,7 @@ def gstreamer_pipeline(
         )
     )
 
-    # 얼굴을 인식했는지 판단하는 메소드
+# 얼굴을 인식했는지 판단하는 메소드
 def face_detector(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray, (5,5), 0)
@@ -56,7 +56,7 @@ def face_detector(img):
 
 # 얼굴을 인식하면 jpg 파일로 저장하는 메소드
 def face_save(name):
-    user_dirs = cropped_dirs+name+'/'
+    user_dirs = face_dirs+name+'/'
 
     # 해당 디렉토리가 존재하지 않으면 생성
     if not isdir(user_dirs):
@@ -87,13 +87,15 @@ def face_save(name):
 
             cv2.imshow("Face Crop", img)
             keyCode = cv2.waitKey(1) & 0xFF
-            if keyCode == 27:
+            if keyCode == 27 or count==10:
                 break
 
         cap.release()
         cv2.destroyAllWindows()
+        return True
     else:
         print("Unable to open camera")
+        return None
 
 if __name__ == "__main__":
     name = input("Name: ")

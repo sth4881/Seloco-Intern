@@ -6,7 +6,7 @@ from os import listdir, makedirs
 from os.path import isdir, isfile, join
 
 # 사진을 200x200 사이즈로 crop 후에 회색 바탕으로 바꿔서 저장
-cropped_dirs = 'faces/cropped/'
+face_dirs = 'static/faces/'
 # 회원과 외부인을 가리지 않고 방문한 사람을 모두 촬영해서 웹으로 전송
 img_dirs = 'static/img/'
 
@@ -42,7 +42,7 @@ def gstreamer_pipeline(
 
 # 각각의 모델을 트레이닝하는 메소드
 def train_model(name):
-    path = cropped_dirs+name+'/'
+    path = face_dirs+name+'/'
     onlyfiles = [f for f in listdir(path) if isfile(join(path, f))]
 
     training_data, labels = [], []
@@ -65,7 +65,7 @@ def train_model(name):
 
 # 트레이닝을 위한 모든 모델을 불러오는 메소드
 def train_models():
-    path = cropped_dirs
+    path = face_dirs
     model_dirs = [f for f in listdir(path) if isdir(join(path, f))]
 
     models = {}
@@ -136,13 +136,15 @@ def face_identification(models):
 
                 # confidence에 따라서 등록된 사용자인지 외부인인지 판별하여 이미지를 저장
                 current = datetime.datetime.now()
-                current_datetime = current.strftime('%Y-%m-%d %H:%M:%S ')
+                current_datetime = current.strftime('%Y-%m-%d_%H:%M:%S_')
                 if confidence >= 80:
                     cv2.putText(img, 'User:'+min_score_name, (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 255, 0), 2)
                     cv2.imwrite(img_dirs+current_datetime+'User:'+min_score_name+'.jpg', img) # 등록된 사용자로 인식될 경우에 대한 이미지 파일 저장
+                    print("User:"+min_score_name)
                 else:
                     cv2.putText(img, 'Unknown', (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 2)
                     cv2.imwrite(img_dirs+current_datetime+'Unknown.jpg', img) # 외부인으로 인식될 경우에 대한 이미지 파일 저장
+                    print("Unknown")
 
             cv2.imshow("Face Identification", img)
             keyCode = cv2.waitKey(1) & 0xFF
