@@ -1,6 +1,6 @@
 import os, sys, json
 
-from flask import Flask, request, redirect, render_template, jsonify
+from flask import Flask, request, redirect, render_template, jsonify, make_response
 from app import gstreamer_pipeline, train_model, train_models, face_detector, face_identification
 from face_save import gstreamer_pipeline, face_detector, face_save
 
@@ -24,11 +24,9 @@ def crop():
     if request.method == 'GET':
         return render_template('crop.html')
     elif request.method == 'POST':
-        # name = request.json
-        # name = jsonify(request.json) # 1번 방법
-        name = request.get_json(force=True) # 2번 방법
-        print(name)
-        return jsonify(name)
+        name = request.json
+        print(type(name))
+        return name
         # return face_save(jsonify(name))]
 
 @app.route('/monitor/', methods=['GET', 'POST'])
@@ -40,7 +38,9 @@ def monitor():
         files.reverse() # 파일을 내림차순으로 정렬
         return render_template('monitor.html', path='../'+path, files=files)
     elif request.method == 'POST':
-        img = request.form
+        # img = list(request.form.keys())[0].strip().split("\n")
+        img = list(request.form.keys())[0]
+        print(img)
         return img
 
 @app.route('/identify/', methods=['POST'])

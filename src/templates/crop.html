@@ -23,13 +23,15 @@
 
 <!-- Javascript -->
 <script>
-    var userName = $("#name").val()
+    // var userName = $("#name").val()
+    var userName = "hello"
     $("#crop").on("click", function() {
         $.ajax({
             url : "{{ url_for('crop') }}",
             type : "POST",
+            dataType : JSON,
             data : {
-                nameaaaaaaaaaa : userName
+                name : userName
             },
             success:function(response) {
                 alert('작업 완료 !')
