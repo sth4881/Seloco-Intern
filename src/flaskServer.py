@@ -25,9 +25,13 @@ def crop():
         return render_template('crop.html')
     elif request.method == 'POST':
         name = request.json
-        print(type(name))
+        print(jsonify(name))
+        print(name)
         return name
-        # return face_save(jsonify(name))]
+
+        # name = list(request.json.keys())[0]
+        # face_save(name)
+        # return render_template('index.html')
 
 @app.route('/monitor/', methods=['GET', 'POST'])
 def monitor():
@@ -38,10 +42,8 @@ def monitor():
         files.reverse() # 파일을 내림차순으로 정렬
         return render_template('monitor.html', path='../'+path, files=files)
     elif request.method == 'POST':
-        # img = list(request.form.keys())[0].strip().split("\n")
-        img = list(request.form.keys())[0]
-        print(img)
-        return img
+        img = list(request.form.keys())[0] # submit의 name이 지칭하는 파일명 가져오기
+        return render_template('display.html', img=img)
 
 @app.route('/identify/', methods=['POST'])
 def identify():

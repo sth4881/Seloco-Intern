@@ -91,7 +91,7 @@ def face_detector(img):
     # cv2.imwrite(img_dirs+current_datetime+'.jpg', img) # 얼굴을 인식하면 jpg 파일로 저장
 
     for(x, y, w, h) in faces:
-        #cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
+        cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 255), 2)
         #roi_gray = gray[y : y+h, x : x+w]
         roi_color = img[y:y+h, x:x+w]
     print('Face Detected')

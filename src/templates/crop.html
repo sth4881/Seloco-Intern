@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 </head>
 <body>
-    <h1>신원확인에 필요한 얼굴 사진 Crop 페이지</h1>
+    <h1>얼굴사진 저장 페이지</h1>
     <h3>이름을 영어로 입력해주세요</h3>
     <!-- <form action='/crop/' method='POST'>
         <input type='text' name='name'>
@@ -23,23 +23,25 @@
 
 <!-- Javascript -->
 <script>
-    // var userName = $("#name").val()
-    var userName = "hello"
+    var userName = $('#name').val()
+    var sendData = {
+        name : userName
+    }
     $("#crop").on("click", function() {
         $.ajax({
             url : "{{ url_for('crop') }}",
             type : "POST",
-            dataType : JSON,
-            data : {
-                name : userName
-            },
+            dataType : "JSON", // JSON, "json", "JSON"은 되지만 json만 불가능
+            contentType : "application/json", // 이거 안 써주면 오류
+            // data : {
+            //     name : userName // 이렇게 보내주면 가긴 가지만 NoneType으로 나옴
+            // },
+            data : JSON.stringify(sendData), // json 객체를 String 객체로 변환
             success:function(response) {
-                alert('작업 완료 !')
+                alert('작업 완료')
             },
-            // error:function(jqXHR, exception) {
-            //     alert('통신 오류 !')
-            error:function(request,status,error){
-                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            error:function(jqXHR, exception) {
+                alert('통신 오류')
             }
         })
     })

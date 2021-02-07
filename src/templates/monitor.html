@@ -6,40 +6,18 @@
 </head>
 <body>
     <h1>출입기록 확인 페이지</h1>
+    <input type="button" id="back" name="back" value="뒤로가기" onclick="window.location.href='/index/'">
     <p>누가 사무실에 출입했는지 확인할 수 있습니다.</p>
     <ul>
         {% for file in files %}
             <li>
-                <!-- <img src={{ path }}{{ file }} id="img" alt="출입기록"> -->
-                <!-- <img src={{ url_for('static', filename='img/2021-02-02_11:58:11_User:Jinho.jpg') }}> -->
-                <!-- <input type="button" id="btn" name="btn" value="이미지 보기" onclick=> -->
                 {{ file }}
-                <!-- <input type="button" id="btn" value="이미지 보기"> -->
                 <form action="/monitor/" method='POST'>
-                    <input type="submit" name={{ path }}{{ file }} value="이미지 보기">
+                    <input type="submit" name="{{ path }}{{ file }}" value="이미지 보기">
                 </form>
             </li>
             <br>
         {% endfor %}
     </ul>
 </body>
-
-<!-- jQuery-latest -->
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
-
-<!-- Javascript -->
-<script>
-    $('#btn').click(function() {
-        $.ajax({
-            url : "{{ url_for('monitor') }}",
-            type : "POST",
-            success:function(result) {
-                $("img").attr('src', '/static/' + result)
-            },
-            error:function(jqXHR, exception) {
-
-            }
-        })
-    })
-</script>
 </html>
