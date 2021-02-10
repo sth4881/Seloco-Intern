@@ -92,10 +92,8 @@ def face_save(name):
 
         cap.release()
         cv2.destroyAllWindows()
-        return True
     else:
         print("Unable to open camera")
-        return None
 
 if __name__ == "__main__":
     name = input("Name: ")

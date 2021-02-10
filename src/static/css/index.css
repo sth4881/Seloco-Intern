@@ -1,0 +1,17 @@
+#aaa {
+    border: 75px;
+    padding: 5px;
+    color: black;
+    font-size: 20pt;
+    width: 150pt;
+    height: 45pt;
+    background-color: white;
+}
+
+h1 {
+    font-size: 50pt;
+}
+
+body {
+    background-image: url("{{ url_for('static', filename='asset/ring.png')}}");
+}
