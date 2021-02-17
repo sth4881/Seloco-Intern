@@ -4,20 +4,23 @@
     <title>Monitor</title>
     <meta charset="utf-8">
 </head>
-<body>
-    <h1>출입기록 확인 페이지</h1>
-    <input type="button" id="back" name="back" value="뒤로가기" onclick="window.location.href='/index/'">
-    <p>누가 사무실에 출입했는지 확인할 수 있습니다.</p>
-    <ul>
-        {% for file in files %}
-            <li>
-                {{ file }}
-                <form action="/monitor/" method='POST'>
-                    <input type="submit" name="{{ path }}{{ file }}" value="이미지 보기">
-                </form>
-            </li>
-            <br>
-        {% endfor %}
-    </ul>
+<body style="background-image: url( {{ url_for('static', filename='asset/blue.jpg')}} ); background-position: center; background-repeat: no-repeat; height: 1100px; background-size: 1200px 1200px">
+    <center>
+        <h1 style = "font-size: 50pt; color : white;">출입기록 확인 페이지</h1>
+        <h3 style = "font-size: 20pt;">누가 사무실에 출입했는지 확인할 수 있습니다.</p>
+        <input type="button" id="back" name="back" value="뒤로가기" onclick="window.location.href='/index/'" style = "border: 5px solid gray; padding: 3px; color: black; font-size:10pt; width: 50pt; height: 25pt; background-color: white;">
+    </center>
+        <ul style = "width: 300px; margin-left : auto; margin-right: auto;">
+            {% for file in files %}
+                <li>
+                    {{ file }}
+                    <form action="/monitor/" method='POST'>
+                        <input type="submit" name="{{ path }}{{ file }}" value="이미지 보기">
+                    </form>
+                </li>
+                <br>
+            {% endfor %}
+        </ul>
+
 </body>
 </html>

@@ -4,18 +4,20 @@
     <title>Face Crop & Save</title>
     <meta charset="utf-8">
 </head>
-<body>
-    <h1>얼굴사진 저장 페이지</h1>
-    <h3>이름을 영어로 입력해주세요</h3>
-    <!-- <form action='/crop/' method='POST'>
-        <input type='text' name='name'>
-        <input type='submit' id='crop' value='시작'>
-    </form> -->
-    <input type="text" id="name" name="name">
-    <p>
-        <input type="submit" id="crop" name="crop" value="시작">
-        <input type="button" id="back" name="back" value="뒤로가기" onclick="window.location.href='/index/'">
-    </p>
+<body style="background-image: url( {{ url_for('static', filename='asset/blue.jpg')}} ); background-position: center; background-repeat: no-repeat; height: 1100px; background-size: 1200px 1200px">
+    <center>
+        <h1 style = "font-size: 50pt; color : white;">얼굴사진 저장 페이지</h1>
+        <h3 style = "font-size: 20pt">이름을 영어로 입력해주세요.</h3>
+        <!-- <form action='/crop/' method='POST'>
+            <input type='text' name='name'>
+            <input type='submit' id='crop' value='시작'>
+        </form> -->
+        <input type="text" id="name" name="name">
+        <p>
+            <input type="submit" id="crop" name="crop" value="시작" style = "border: 5px solid gray; padding: 3px; color: black; font-size:10pt; width: 50pt; height: 25pt; background-color: white;">
+            <input type="button" id="back" name="back" value="뒤로가기" onclick="window.location.href='/index/'" style = "border: 5px solid gray; padding: 3px; color: black; font-size:10pt; width: 50pt; height: 25pt; background-color: white;">
+        </p>
+    </center>
 </body>
 
 <!-- jQuery-latest -->

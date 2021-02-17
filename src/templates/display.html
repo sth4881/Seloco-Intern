@@ -4,8 +4,11 @@
     <title>Display</title>
     <meta charset="utf-8">
 </head>
-<body>
-    <img src="{{ img }}" alt="출입기록"><br>
-    <input type="button" id="back" name="back" value="뒤로가기" onclick="window.location.href='/monitor/'">
+<body style="background-image: url( {{ url_for('static', filename='asset/blue.jpg')}} ); background-position: center; background-repeat: no-repeat; height: 1100px; background-size: 1200px 1200px">
+    <center>
+        <h1>{{ "".join(img.split('../static/img/')) }}</h1>
+        <img src="{{ img }}" alt="출입기록"><br>
+        <input type="button" id="back" name="back" value="뒤로가기" onclick="window.location.href='/monitor/'" style = "border: 5px solid gray; padding: 3px; color: black; font-size:10pt; width: 50pt; height: 25pt; background-color: white;">
+    </center>
 </body>
 </html>
