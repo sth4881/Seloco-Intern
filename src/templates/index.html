@@ -3,21 +3,15 @@
 <head>
     <title>Index</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
 </head>
 <body style="background-image: url( {{ url_for('static', filename='asset/blue.jpg')}} ); background-position: center; background-repeat: no-repeat; height: 1100px; background-size: 1200px 1200px">
     <center>
-        <h1 style = "font-size: 50pt; color :white;">출입관제 시스템</h1>
+        <h1 style = "font-size: 40pt; color :white;">출입관제 시스템<br>관리자 페이지</h1>
         <p>
             <input type='button' name='crop' value='얼굴사진 저장' onclick="window.location.href='/crop/'" style = "border: 7px solid gray; padding: 5px; color: black; font-size:20pt; width:150pt; height:45pt; background-color: white;">
         </p>
         <p>
             <input type='button' class="btn" name='monitor' value='출입기록 확인' onclick="window.location.href='/monitor/'" style = "border: 7px solid gray; padding: 5px; color: black; font-size:20pt; width:150pt; height:45pt; background-color: white;">
-        </p>
-        <p>
-            <form action="/identify/" method='POST'>
-                <input type='submit' class="btn" id='identify' name='identify' value='신원확인' style = "border: 7px solid gray; padding: 5px; color: black; font-size:20pt; width:150pt; height:45pt; background-color: white;">
-            </form>
         </p>
     </center>
     <!--

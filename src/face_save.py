@@ -48,11 +48,8 @@ def face_detector(img):
         return None
 
     for(x, y, w, h) in faces:
-        #cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
-        #roi_gray = gray[y : y+h, x : x+w]
-        roi_color = img[y:y+h, x:x+w]
-    print('Face Detected')
-    return roi_color
+        roi = img[y:y+h, x:x+w]
+    return roi
 
 # 얼굴을 인식하면 jpg 파일로 저장하는 메소드
 def face_save(name):
@@ -64,10 +61,10 @@ def face_save(name):
 
     cap = cv2.VideoCapture(gstreamer_pipeline(), cv2.CAP_GSTREAMER)
     if cap.isOpened():
-        cv2.namedWindow("Face Crop", cv2.WINDOW_AUTOSIZE)
+        cv2.namedWindow("Face Cropper", cv2.WINDOW_AUTOSIZE)
 
         count = 1
-        while cv2.getWindowProperty("Face Crop", 0) >= 0:
+        while cv2.getWindowProperty("Face Cropper", 0) >= 0:
             ret, img = cap.read()
             # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             # blur = cv2.GaussianBlur(gray, (5,5), 0)
@@ -75,19 +72,22 @@ def face_save(name):
 
             # for(x, y, w, h) in faces:
             #     cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
-            #     #roi_gray = gray[y : y+h, x : x+w]
+            #     roi_gray = gray[y : y+h, x : x+w]
             #     roi_color = img[y : y+h, x : x+w]
 
             # 카메라를 통해서 읽어온 이미지를 얼굴로 인식할 경우
-            if face_detector(img) is not None:
-                cropped = cv2.resize(face_detector(img), (200, 200)) # 얼굴 사이즈에 맞게 200x200 사이즈로 이미지 축소
-                cropped = cv2.cvtColor(cropped, cv2.COLOR_BGR2GRAY) # 축소된 이미지를 회색 바탕으로 변경
-                cv2.imwrite(user_dirs+str(count)+'.jpg', cropped) # 축소되고 회색으로 변경된 이미지를 저장
-                count+=1
+            face = face_detector(img)
+            if face is not None:
+                crop = cv2.resize(face, (200, 200)) # 얼굴 사이즈에 맞게 200x200 사이즈로 이미지 축소
+                gray = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY) # 축소된 이미지를 회색 바탕으로 변경
+                cv2.imwrite(user_dirs+str(count)+'.jpg', gray) # 축소되고 회색으로 변경된 이미지를 저장
 
-            cv2.imshow("Face Crop", img)
+                cv2.putText(gray, str(count), (25, 50), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 0), 2) # 현재 몇번째 이미지를 촬영하고 있는지 좌측 상단에 숫자로 표시
+                cv2.imshow("Face Cropper", gray)
+                count += 1
+            
             keyCode = cv2.waitKey(1) & 0xFF
-            if keyCode == 27 or count==10:
+            if keyCode == 27 or count > 10:
                 break
 
         cap.release()

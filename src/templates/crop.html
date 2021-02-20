@@ -6,8 +6,8 @@
 </head>
 <body style="background-image: url( {{ url_for('static', filename='asset/blue.jpg')}} ); background-position: center; background-repeat: no-repeat; height: 1100px; background-size: 1200px 1200px">
     <center>
-        <h1 style = "font-size: 50pt; color : white;">얼굴사진 저장 페이지</h1>
-        <h3 style = "font-size: 20pt">이름을 영어로 입력해주세요.</h3>
+        <h1 style = "font-size: 40pt; color : white;">얼굴사진 저장 페이지</h1>
+        <h3 style = "font-size: 20pt">시작 버튼을 누른 후에 카메라 앞에 얼굴을 위치시켜주세요.</h3>
         <!-- <form action='/crop/' method='POST'>
             <input type='text' name='name'>
             <input type='submit' id='crop' value='시작'>
@@ -45,7 +45,6 @@
             success:function(response) {
                 alert('작업 완료')
                 window.location.href = '../index'
-
             },
             error:function(jqXHR, exception) {
                 var msg = '';
