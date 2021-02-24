@@ -15,7 +15,7 @@ def crop():
     if request.method == 'GET':
         return render_template('crop.html')
     elif request.method == 'POST':
-        name = list(request.json.values())[0]
+        name = list(request.json.values())[0] # crop.html 페이지에서 POST방식으로 제출한 id='name'을 json 형식으로 받아옴
         face_save(name)
         return json.dumps("SUCCESS") # JSON Parse해서 클라이언트에 응답
 
@@ -28,7 +28,7 @@ def monitor():
         files.reverse() # 파일을 내림차순으로 정렬
         return render_template('monitor.html', path='../'+path, files=files)
     elif request.method == 'POST':
-        img = list(request.form.keys())[0] # submit의 name이 지칭하는 파일명 가져오기
+        img = list(request.form.keys())[0] # monitor.html 페이지에서 submit의 name이 지칭하는 파일명 가져오기
         return render_template('display.html', img=img)
         
 if __name__ == "__main__":
