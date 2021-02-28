@@ -148,7 +148,7 @@ def face_identification(models):
                 if confidence >= 80:
                     cv2.putText(img, 'User:'+min_score_name, (325, 500), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 255, 0), 2)
                     cv2.imwrite(image_dirs+current_datetime+'User:'+min_score_name+'.jpg', img) # 등록된 사용자로 인식될 경우에 대한 이미지 파일 저장
-                    cv2.imwrite(face_dirs+current_datetime+min_score_name+'.jpg', img) # 촬영된 이미지를 이용한 학습 데이터 생성
+                    cv2.imwrite(face_dirs+min_score_name+'/'+current_datetime+'User:'+min_score_name+'.jpg', face) # 촬영된 이미지를 재활용하여 학습 데이터 생성
                     print("User:"+min_score_name)
                 else:
                     cv2.putText(img, 'Unknown', (325, 500), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 2)
